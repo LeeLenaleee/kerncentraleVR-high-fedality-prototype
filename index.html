@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <script src="https://aframe.io/releases/0.9.1/aframe.min.js"></script>
+    <meta charset="utf-8">
+    <title>VR</title>
+  </head>
+  <body>
+    <a-scene id="js--scene">
+      <a-camera id="js--camera">
+        <a-entity
+          id="js--cursor"
+          animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1;"
+          animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"
+          animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur:300; to: 1 1 1"
+          cursor="fuse:true"
+          material="color: black; shader: flat"
+          position="0 0 -3"
+          geometry="primitive: ring; radiusInner: 0.05; radiusOuter: 0.1;"
+        >
+
+        </a-entity>
+      </a-camera>
+      <a-assets>
+        <a-asset-item id="controlPannel-obj" src="3dModels/controlPannel.obj"></a-asset-item>
+        <a-asset-item id="controlPannel-mtl" src="3dModels/controlPannel.mtl"></a-asset-item>
+
+        <a-asset-item id="lever-obj" src="3dModels/hendel.obj"></a-asset-item>
+        <a-asset-item id="lever-mtl" src="3dModels/hendel.mtl"></a-asset-item>
+      </a-assets>
+
+      <!--Control pannel and levers -->
+      <a-obj-model position="0 -3 -10" rotation="0 270" src="#controlPannel-obj" mtl="#controlPannel-mtl"></a-obj-model>
+      <a-obj-model id="lever1" position="-2 -3 -6" rotation="0 0" src="#lever-obj" mtl="#lever-mtl" onclick="flickLever(event)"></a-obj-model>
+      <a-obj-model id="lever2" position="4 -3 -6" rotation="0 0" src="#lever-obj" mtl="#lever-mtl" onclick="flickLever(event)"></a-obj-model>
+
+      <!--computer screen-->
+      <a-box position="0 2 -14" color="black" height="0.5" width="28"></a-box>
+      <a-box position="0 12 -14" color="black" height="0.5" width="28"></a-box>
+      <a-box position="13.75 7 -14" color="black" height="10" width="0.5"></a-box>
+      <a-box position="-13.75 7 -14" color="black" height="10" width="0.5"></a-box>
+
+      <a-box id="screen" position="0 7 -14" color="red" height="9.5" width="26"></a-box>
+      <a-text id="screenText" value="Core temp too high, lower asap" color="black" position="-12.2 7 -13" width="40"></a-text>
+    </a-scene>
+    <script src="main.js" type="text/javascript"></script>
+  </body>
+</html>
